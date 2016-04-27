@@ -14,14 +14,15 @@ namespace Spange.Models
         public int PlayerId { get; set; }
 
         [ForeignKey("UserId")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         public string Name { get; set; }
+        public string ImgLink { get; set; }
         public int Appeal { get; set; }
         public int MaxHp { get; set; }
         public int CurrentHp { get; set; }
-        public int Hunger { get; set; }
-        public int NeedToSleep { get; set; }
+        public int Satiation { get; set; }
+        public int Sleep { get; set; }
         public double Spange { get; set; }
 
         public virtual ICollection<PitchCamp> PitchCamps { get; set; }

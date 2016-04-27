@@ -8,9 +8,10 @@ using Spange.Models;
 namespace Spange.Migrations.SpangeDb
 {
     [DbContext(typeof(SpangeDbContext))]
-    partial class SpangeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160427171648_AddImageLink")]
+    partial class AddImageLink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -165,7 +166,7 @@ namespace Spange.Migrations.SpangeDb
 
                     b.Property<double>("Spange");
 
-                    b.Property<string>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("PlayerId");
 

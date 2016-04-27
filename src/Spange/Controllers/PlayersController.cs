@@ -1,21 +1,24 @@
+using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNet.Http.Features.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Spange.Models;
-using System.Linq;
+using Microsoft.AspNet.Authorization;
 
 namespace Spange.Controllers
 {
     public class PlayersController : Controller
     {
         private SpangeDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
 
-        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager)
+        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager )
         {
-            _userManager = userManager;
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Players
@@ -54,6 +57,9 @@ namespace Spange.Controllers
         {
             if (ModelState.IsValid)
             {
+                player.UserId = User.GetUserId();
+                var user = _userManager.Users.FirstOrDefault(u => u.Id == player.UserId);
+                var thing = _userManager.AddToRoleAsync(user, "Player").Result;
                 _context.Players.Add(player);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,6 +68,7 @@ namespace Spange.Controllers
         }
 
         // GET: Players/Edit/5
+        [Authorize(Roles="Player")]
         public IActionResult Edit(int? id)
         {
             if (id == null)

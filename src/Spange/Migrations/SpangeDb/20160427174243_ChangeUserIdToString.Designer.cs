@@ -8,9 +8,10 @@ using Spange.Models;
 namespace Spange.Migrations.SpangeDb
 {
     [DbContext(typeof(SpangeDbContext))]
-    partial class SpangeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160427174243_ChangeUserIdToString")]
+    partial class ChangeUserIdToString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")

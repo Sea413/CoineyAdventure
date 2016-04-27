@@ -20,7 +20,6 @@ namespace Spange.Models
         public int PitchBonus { get; set; }
         public int CookBonus { get; set; }
         public double StreetPrice { get; set; }
-
         public double GutterPrice { get; set; }
     }
 }
