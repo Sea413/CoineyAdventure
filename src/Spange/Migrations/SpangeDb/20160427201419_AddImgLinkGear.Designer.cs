@@ -8,9 +8,10 @@ using Spange.Models;
 namespace Spange.Migrations.SpangeDb
 {
     [DbContext(typeof(SpangeDbContext))]
-    partial class SpangeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160427201419_AddImgLinkGear")]
+    partial class AddImgLinkGear
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -130,20 +131,6 @@ namespace Spange.Migrations.SpangeDb
                     b.HasKey("GearId");
 
                     b.HasAnnotation("Relational:TableName", "Gears");
-                });
-
-            modelBuilder.Entity("Spange.Models.Inventory", b =>
-                {
-                    b.Property<int>("InventoryId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("GearId");
-
-                    b.Property<int>("PlayerId");
-
-                    b.HasKey("InventoryId");
-
-                    b.HasAnnotation("Relational:TableName", "Inventories");
                 });
 
             modelBuilder.Entity("Spange.Models.PitchCamp", b =>

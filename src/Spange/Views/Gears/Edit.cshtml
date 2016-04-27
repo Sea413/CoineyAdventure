@@ -1,0 +1,94 @@
+@model Spange.Models.Gear
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Gear</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="GearId" />
+        <div class="form-group">
+            <label asp-for="CookBonus" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CookBonus" class="form-control" />
+                <span asp-validation-for="CookBonus" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="GutterPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="GutterPrice" class="form-control" />
+                <span asp-validation-for="GutterPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ImgLink" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ImgLink" class="form-control" />
+                <span asp-validation-for="ImgLink" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PitchBonus" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PitchBonus" class="form-control" />
+                <span asp-validation-for="PitchBonus" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StreetPrice" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="StreetPrice" class="form-control" />
+                <span asp-validation-for="StreetPrice" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SympathyBonus" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SympathyBonus" class="form-control" />
+                <span asp-validation-for="SympathyBonus" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ThreatBonus" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ThreatBonus" class="form-control" />
+                <span asp-validation-for="ThreatBonus" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,76 @@
+@model Spange.Models.Gear
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Gear</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CookBonus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CookBonus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GutterPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GutterPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImgLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImgLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PitchBonus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PitchBonus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StreetPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StreetPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SympathyBonus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SympathyBonus)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ThreatBonus)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThreatBonus)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

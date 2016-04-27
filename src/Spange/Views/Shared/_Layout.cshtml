@@ -28,20 +28,21 @@
                     Spange
                 </a>
 
-                <ul id="nav-mobile" class="right hide-on-small-and-down waves-effect waves-light">
+                <ul id="nav-mobile" class="right waves-effect waves-light">
                     <li>@Html.ActionLink("Players", "Index", "Players")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Rooooles", "Index", "Roles")</li>
                     <li><a href="#" data-activates="collapse-menu" class="button-collapse" materialize="sidenav"><i class="material-icons">menu</i></a></li>
-                    <li>@await Html.PartialAsync("_LoginPartial")</li>
                 </ul>
 
                 <ul class="side-nav right-align" id="collapse-menu">
-                    <li>@Html.ActionLink("Menu", "Index", "Menus")</li>
+                    <li>@await Html.PartialAsync("_LoginPartial")</li>
+                    <li>@Html.ActionLink("Players", "Index", "Players")</li>
+                    <li>@Html.ActionLink("Gear", "Index", "Gears")</li>
+                    <li>@Html.ActionLink("Spots", "Index", "Spots")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Rooooles", "Index", "Roles")</li>
                 </ul>
             </div>
         </nav>

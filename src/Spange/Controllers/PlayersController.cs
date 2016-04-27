@@ -10,10 +10,11 @@ using Microsoft.AspNet.Authorization;
 
 namespace Spange.Controllers
 {
+    [Authorize(Roles = "Player")]
     public class PlayersController : Controller
     {
         private SpangeDbContext _context;
-        private UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager )
         {
@@ -68,7 +69,6 @@ namespace Spange.Controllers
         }
 
         // GET: Players/Edit/5
-        [Authorize(Roles="Player")]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -81,6 +81,13 @@ namespace Spange.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Inventory = _context.Gears.Join(_context.Inventories.Where(i => i.PlayerId == player.PlayerId).ToList(),
+                g=>g.GearId,
+                i=>i.GearId,
+                (o,i) => o).ToList();
+            ViewBag.AllGear = _context.Gears.ToList();
+            
             return View(player);
         }
 

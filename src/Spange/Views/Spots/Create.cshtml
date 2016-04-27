@@ -9,13 +9,12 @@
 <form asp-action="Create">
     <div class="form-horizontal">
         <h4>Spot</h4>
-        <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="ClaimSpotId" class="col-md-2 control-label"></label>
+            <label asp-for="Location" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ClaimSpotId" class="form-control" />
-                <span asp-validation-for="ClaimSpotId" class="text-danger" />
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -30,13 +29,6 @@
             <div class="col-md-10">
                 <input asp-for="ImgLink" class="form-control" />
                 <span asp-validation-for="ImgLink" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Location" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger" />
             </div>
         </div>
         <div class="form-group">

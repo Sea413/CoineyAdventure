@@ -15,6 +15,7 @@ namespace Spange.Models
         public DbSet<Gear> Gears { get; set; }
         public DbSet<PitchCamp> PitchCamps { get; set; }
         public DbSet<PlayerFood> PlayerFoods { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Spot> Spots { get; set; }
     }

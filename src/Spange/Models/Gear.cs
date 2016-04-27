@@ -15,6 +15,7 @@ namespace Spange.Models
 
         public string Name { get; set; }
         public string Description { get; set; }
+        public string ImgLink { get; set; }
         public int ThreatBonus { get; set; }
         public int SympathyBonus { get; set; }
         public int PitchBonus { get; set; }
