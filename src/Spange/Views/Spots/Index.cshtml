@@ -1,0 +1,62 @@
+@model IEnumerable<Spange.Models.Spot>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ClaimSpotId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pockets)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpangeyPockets)
+        </th>
+        <th></th>
+    </tr>
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClaimSpotId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.ImgLink)" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pockets)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpangeyPockets)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.SpotId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.SpotId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.SpotId">Delete</a>
+        </td>
+    </tr>
+}
+</table>
