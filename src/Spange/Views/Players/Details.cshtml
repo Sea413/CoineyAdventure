@@ -1,0 +1,66 @@
+@model Spange.Models.Player
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Appeal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Appeal)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentHp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentHp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Hunger)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Hunger)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxHp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxHp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NeedToSleep)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NeedToSleep)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Spange)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Spange)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>
