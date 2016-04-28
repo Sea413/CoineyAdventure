@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNet.Authorization;
+﻿using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Internal;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Spange.Models;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Spange.Controllers
 {
@@ -15,18 +16,19 @@ namespace Spange.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public RolesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public RolesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _context = context;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
         {
             return View("Index", _context.Roles.ToList());
         }
-
 
         public IActionResult Create()
         {
@@ -41,7 +43,7 @@ namespace Spange.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult Delete(string roleName)
         {
             var role = _context.Roles.FirstOrDefault(m => m.Name == roleName);
@@ -60,7 +62,7 @@ namespace Spange.Controllers
             }
             return RedirectToAction("Index");
         }
-        
+
         public IActionResult Assign()
         {
             ViewBag.Users = new SelectList(_userManager.Users.ToList());
@@ -96,11 +98,12 @@ namespace Spange.Controllers
             ViewBag.Roles = roles;
             return View("Assign");
         }
-        
-        public IActionResult AddToUser(string username, string roleName)
+
+        public async Task<IActionResult> AddToUser(string username, string roleName)
         {
             var user = GetUser(username);
-            var thing = _userManager.AddToRoleAsync(user, roleName).Result;
+            await _userManager.AddToRoleAsync(user, roleName);
+
             return GetRoles(username);
         }
 
@@ -110,7 +113,7 @@ namespace Spange.Controllers
             var thing = _userManager.RemoveFromRoleAsync(GetUser(username), roleName).Result;
             return GetRoles(username);
         }
-        
+
         public ApplicationUser GetUser(string username)
         {
             return _userManager.Users.FirstOrDefault(m => m.UserName == username);

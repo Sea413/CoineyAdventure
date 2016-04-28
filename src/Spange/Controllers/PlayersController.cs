@@ -1,12 +1,12 @@
-using System.Linq;
-using System.Security.Claims;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Http.Features.Authentication;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Spange.Models;
-using Microsoft.AspNet.Authorization;
+using System.Linq;
+using System.Security.Claims;
 
 namespace Spange.Controllers
 {
@@ -16,7 +16,7 @@ namespace Spange.Controllers
         private SpangeDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager )
+        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -83,12 +83,17 @@ namespace Spange.Controllers
             }
 
             ViewBag.Inventory = _context.Gears.Join(_context.Inventories.Where(i => i.PlayerId == player.PlayerId).ToList(),
-                g=>g.GearId,
-                i=>i.GearId,
-                (o,i) => o).ToList();
+                g => g.GearId,
+                i => i.GearId,
+                (o, i) => o).ToList();
             ViewBag.AllGear = _context.Gears.ToList();
-            
+
             return View(player);
+        }
+
+        public IActionResult JackGear()
+        {
+            return View("Edit");
         }
 
         // POST: Players/Edit/5

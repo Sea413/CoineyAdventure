@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="ImgLink" class="col s2 control-label"><img src="@Model.ImgLink" alt="avatar" style="height: 50px;"/></label>
+                <label asp-for="ImgLink" class="col s2 control-label"><img src="@Model.ImgLink" alt="avatar" style="height: 50px;" /></label>
                 <div class="col s10">
                     <input asp-for="ImgLink" class="form-control" />
                     <span asp-validation-for="ImgLink" class="text-danger" />
@@ -88,25 +88,28 @@
     </div>
 </div>
 <div class="row">
-        @foreach (var gear in ViewBag.AllGear)
-        {
-            <div class="card small">
-                <div class="card-image">
-                    <img src="@gear.ImgLink" alt="gear photo"/>
-                    <span class="card-title">@gear.Name</span>
-                </div>
-                <div class="card-content">
-                    <p>
-                        @gear.Description
-                    </p>
-                    <a asp-action="JackGear" asp-controller="Players">Jack this @gear.Name</a>
-                </div>
+    @foreach (var gear in ViewBag.AllGear)
+    {
+        <div class="card small">
+            <div class="card-image">
+                <img src="@gear.ImgLink" alt="gear photo" />
+                <span class="card-title">@gear.Name</span>
             </div>
-        }
-
-</div>
-    @section Scripts {
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+            <div class="card-content">
+                <p>
+                    @gear.Description
+                </p>
+                @using (Html.BeginForm())
+                {
+                    <input hidden name="playerId" value=""
+                    <a class="btn waves waves-light" asp-action="JackGear" asp-controller="Players">Jack this @gear.Name</a>
+                }
+            </div>
+        </div>
     }
+</div>
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
