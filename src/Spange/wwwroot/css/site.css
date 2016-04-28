@@ -7,4 +7,6 @@
     height: 70%;
 }
 
-
+.button-collapse {
+    display: block !important;
+}
