@@ -14,17 +14,22 @@ namespace Spange.Controllers
     public class PlayersController : Controller
     {
         private SpangeDbContext _context;
+        private ApplicationDbContext _userdb;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager)
+        public PlayersController(SpangeDbContext context, UserManager<ApplicationUser> userManager, ApplicationDbContext userdb)
         {
             _context = context;
             _userManager = userManager;
+            _userdb = userdb;
         }
 
         // GET: Players
         public IActionResult Index()
         {
+            var userId = User.GetUserId();
+            var user = _userdb.Users.FirstOrDefault(u => u.Id == userId);
+            ViewData["UserName"] = user.UserName;
             return View(_context.Players.ToList());
         }
 
@@ -41,8 +46,33 @@ namespace Spange.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["UserName"] = User.GetUserName();
+            player.Inventory = _context.Gears.Join(_context.Inventories.Where(i => i.PlayerId == id).ToList(),
+                g => g.GearId,
+                i => i.GearId,
+                (o, i) => o).ToList();
+            ViewBag.AllGear = _context.Gears.ToList().Except(player.Inventory);
 
             return View(player);
+        }
+
+        // Post: Players/Jackgear
+        [HttpPost]
+        public IActionResult JackGear(int gearId, int playerId)
+        {
+            Inventory playerInventory = new Inventory();
+            var player = _context.Players.FirstOrDefault(p => p.PlayerId == playerId);
+            playerInventory.GearId = gearId;
+            playerInventory.PlayerId = playerId;
+            _context.Inventories.Add(playerInventory);
+            _context.SaveChanges();
+            ViewData["UserName"] = User.GetUserName();
+            player.Inventory = _context.Gears.Join(_context.Inventories.Where(i => i.PlayerId == playerId).ToList(),
+                g => g.GearId,
+                i => i.GearId,
+                (o, i) => o).ToList();
+            ViewBag.AllGear = _context.Gears.ToList().Except(player.Inventory);
+            return View("Details", player);
         }
 
         // GET: Players/Create
@@ -89,11 +119,6 @@ namespace Spange.Controllers
             ViewBag.AllGear = _context.Gears.ToList();
 
             return View(player);
-        }
-
-        public IActionResult JackGear()
-        {
-            return View("Edit");
         }
 
         // POST: Players/Edit/5

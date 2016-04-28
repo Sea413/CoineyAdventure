@@ -1,13 +1,13 @@
 @model IEnumerable<Spange.Models.Gear>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Gear";
 }
 
-<h2>Index</h2>
+<h2>Gear</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Gear</a>
 </p>
 <table class="table">
     <tr>
@@ -41,42 +41,43 @@
         </th>
         <th></th>
     </tr>
-    
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.ImgLink)"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GutterPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StreetPrice)
-        </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.CookBonus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PitchBonus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SympathyBonus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThreatBonus)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.GearId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.GearId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.GearId">Delete</a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImgLink)" alt="gear picture" style="width:200px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GutterPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StreetPrice)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CookBonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PitchBonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SympathyBonus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThreatBonus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GearId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GearId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GearId">Delete</a>
+            </td>
+        </tr>
+    }
 </table>

@@ -13,13 +13,13 @@
     <tr>
         
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Location)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ImgLink)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Pockets)
@@ -34,13 +34,13 @@
     <tr>
         
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.ImgLink)" />
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.ImgLink)" style="width:200px;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Pockets)

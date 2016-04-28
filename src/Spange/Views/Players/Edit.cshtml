@@ -69,13 +69,6 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="UserId" class="col s2 control-label"></label>
-                <div class="col s10">
-                    <input asp-for="UserId" class="form-control" />
-                    <span asp-validation-for="UserId" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
                 <div class="col s2">
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
@@ -101,8 +94,7 @@
                 </p>
                 @using (Html.BeginForm())
                 {
-                    <input hidden name="playerId" value=""
-                    <a class="btn waves waves-light" asp-action="JackGear" asp-controller="Players">Jack this @gear.Name</a>
+                    <a class="btn" asp-action="JackGear" asp-controller="Players" asp->Jack this @gear.Name</a>
                 }
             </div>
         </div>

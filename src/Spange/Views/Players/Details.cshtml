@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var username = ViewData["UserName"].ToString();
 }
 
 <h2>Details</h2>
@@ -9,62 +10,76 @@
 <div>
     <h4>Player</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Appeal)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Appeal)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentHp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CurrentHp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImgLink)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImgLink)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxHp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaxHp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Satiation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Satiation)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Sleep)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Sleep)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Spange)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Spange)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col l4 m4">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+            <img src="@Html.DisplayFor(model => model.ImgLink)" style="width:200px;" />
+            @Html.DisplayFor(model => username)
+        </div>
+        <div class="col l2 m2">
+            @Html.DisplayNameFor(model => model.Appeal): @Html.DisplayFor(model => model.Appeal)
+            <br />
+            @Html.DisplayNameFor(model => model.CurrentHp): @Html.DisplayFor(model => model.CurrentHp)
+            <br />
+            @Html.DisplayFor(model => model.MaxHp): @Html.DisplayNameFor(model => model.MaxHp)
+            <br />
+            <hr />
+            @Html.DisplayNameFor(model => model.Satiation): @Html.DisplayFor(model => model.Satiation)
+            <br />
+            @Html.DisplayNameFor(model => model.Sleep): @Html.DisplayFor(model => model.Sleep)
+            <br />
+            @Html.DisplayNameFor(model => model.Spange): @Html.DisplayFor(model => model.Spange)
+        </div>
+        <div class="col l6 m6">
+            <div class="row">
+                <div class="col l12 m12 s12">
+                    <h3>Your Gear</h3>
+                    @using (Html.BeginForm("JackGear", "Players", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(p => p.PlayerId)
+                        @foreach (var gear in Model.Inventory)
+                        {
+                            <div class="card">
+                                <div class="card-image">
+                                    <img src="@gear.ImgLink" alt="gear photo" />
+                                    <span class="card-title">@gear.Name</span>
+                                </div>
+                                <div class="card-content">
+                                    <p>
+                                        @gear.Description
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l6 m6 s6">
+            <h3>Gear on the street</h3>
+            @using (Html.BeginForm("JackGear", "Players", FormMethod.Post))
+            {
+                @Html.HiddenFor(p => p.PlayerId)
+                @foreach (var gear in ViewBag.AllGear)
+                {
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="@gear.ImgLink" alt="gear photo" />
+                            <span class="card-title">@gear.Name</span>
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                @gear.Description
+                            </p>
+                            <button class="btn waves-effect waves-light" name="gearId" value="@gear.GearId" onclick="this.form.submit()">Jack This @gear.Name</button>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
 </div>
 <p>
     <a asp-action="Edit" asp-route-id="@Model.PlayerId">Edit</a> |

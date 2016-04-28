@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var username = ViewData["UserName"].ToString();
 }
 
 <h2>Index</h2>
@@ -12,20 +13,21 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgLink)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Appeal)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CurrentHp)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImgLink)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.MaxHp)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Satiation)
         </th>
@@ -36,45 +38,47 @@
             @Html.DisplayNameFor(model => model.Spange)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserId)
+            @Html.DisplayNameFor(model => username)
         </th>
         <th></th>
     </tr>
-    
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Appeal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrentHp)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.ImgLink)" style="width: 100px; border-radius: 40px;"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxHp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Satiation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sleep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Spange)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
-        </td>
-    </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImgLink)" style="width: 100px; border-radius: 40px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Appeal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentHp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxHp)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Satiation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sleep)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Spange)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => username)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PlayerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PlayerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlayerId">Delete</a>
+            </td>
+        </tr>
+    }
 </table>
