@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CharacterInfo>
+
+<h2>Adventures of Coiny</h2>
+<h3>Coiny Takes The Marvel Universe</h3>
+
+<ul>
+    @if (@Model != null)
+    {
+        foreach (var character in Model)
+        {
+            <li>@character.name</li>
+            <li>@character.deck</li>
+        }
+    }
+</ul>
+
