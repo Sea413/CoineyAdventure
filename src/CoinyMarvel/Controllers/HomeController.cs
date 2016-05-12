@@ -17,27 +17,30 @@ namespace CoinyMarvel.Controllers
             return View();
         }
 
-        public IActionResult Character()
-        {
-            return View();
-        }
-
         [HttpPost]
-        public IActionResult Character(string name)
+        public IActionResult Index(string name)
         {
 
             var client = new RestClient("http://comicvine.gamespot.com/api/");
-            var request = new RestRequest("characters/?api_key=85bcf9ab4e6f07fc814207cd668077b1d32b5a99&format=JSON&filter=name:" + name);
+            var request = new RestRequest("characters/?api_key=85bcf9ab4e6f07fc814207cd668077b1d32b5a99&format=JSON&limit=5&filter=name:" + name);
             var response = client.Execute(request);
-            JObject jsonResponse = (JObject)JsonConvert.DeserializeObject(response.Content);
+            //JObject jsonResponse = (JObject)JsonConvert.DeserializeObject(response.Content);
+
+            dynamic jsonResponse = JObject.Parse(response.Content);
+
             List<CharacterInfo> characterList = new List<CharacterInfo>();
             foreach (var result in jsonResponse["results"])
             {
                 CharacterInfo characterInfo = new CharacterInfo();
                 characterInfo.name = result["name"].ToString();
                 characterInfo.deck = result["deck"].ToString();
-               
-                characterList.Add(characterInfo);
+                try
+                {
+                    characterInfo.image = result.image["medium_url"].ToString();
+                }
+                catch (System.InvalidOperationException) { characterInfo.image = "../images/image-not-found.jpg"; };
+                characterInfo.fame = result["count_of_issue_appearances"];
+            characterList.Add(characterInfo);
             }
 
             return View("Characters", characterList);
@@ -66,6 +69,14 @@ namespace CoinyMarvel.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult PingPong()
+        {
+            return View();
+        }
+
+       
     }
 }
 

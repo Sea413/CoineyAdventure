@@ -1,0 +1,12 @@
+﻿@model string
+<h2> ping ping pong</h2>
+@if (Model != null)
+{
+    <p>@Model</p>   
+}
+
+@using (Html.BeginForm("PingPong"))
+{
+    <input name="ping" type="number" />
+    <button type="submit">submit</button>
+}

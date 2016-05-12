@@ -3,13 +3,49 @@
 <h2>Adventures of Coiny</h2>
 <h3>Coiny Takes The Marvel Universe</h3>
 
-<ul>
+<ul id="character-list">
     @if (@Model != null)
     {
         foreach (var character in Model)
         {
-            <li>@character.name</li>
-            <li>@character.deck</li>
+            <li>
+                <div class="card">
+                    <div class="card-image">
+                        <img src ="@character.image" class="activator" />
+                        </div>
+                    <div class="card-content">
+                        <span class="card-title activator">@character.name<i class="material-icons right">more_vert</i></span>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title activator">@character.name<i class="material-icons right">close</i></span>
+                        <p>@character.deck</p>
+                        <p>
+                            @if (character.fame > 10)
+                    {
+                                @for (var i = 0; i < 10; i++)
+                        {
+                                    <i class="material-icons">star</i>
+                                }
+
+                            }
+                            else if (character.fame <= 10)
+                            {
+                                @for (var i = 0; i < character.fame; i++)
+                        {
+                                    <i class="material-icons">star</i>
+                                }
+
+
+                            }
+                            <i class="material-icons">hot_tub</i>...@character.fame.ToString() times.
+                        </p>
+                    </div>
+                </div>
+                
+                
+                
+
+            </li>
         }
     }
 </ul>

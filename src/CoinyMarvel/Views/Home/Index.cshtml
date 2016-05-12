@@ -1,9 +1,13 @@
-﻿<h2>Adventures of Coiny</h2>
+﻿@model CoinyMarvel.Models.CharacterInfo
+
+<h2>Adventures of Coiny</h2>
 <h3>Coiny Takes The Marvel Universe</h3>
 
 Which character should Coiny replace today?
-<form id="c_search">
-    <input id="doppleganger" placeholder="choose your fate..." />
+ @using (Html.BeginForm("getCharacter", "Home", FormMethod.Post))
+ {
+
+    @Html.TextBoxFor(m => Model.name)
     <button type="submit">replace</button>
-</form>
+ }
 
